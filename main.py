@@ -141,7 +141,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
 
     user_message += ("for all the cities, (in the SAME Google Maps link), add their country after the city name, "
                      "separated by '+' between them. For instance 'Paris+France/Orléans+France' "
-                     "Please refrain from including anything to this link, not before the link and not after \n")
+                     "Please REFRAIN from including anything to this link, not before the link and not after \n")
 
     st.write(user_message)
 
@@ -199,7 +199,7 @@ poi_options = ["Museums", "Parks & Gardens", "Architecture", "Art Galleries", "L
 
 selected_pois = st.sidebar.multiselect("Preferred POIs", poi_options)
 
-accommodation_options = ["3-star", "4-star", "5-star", "Hostels ", "B&Bs",
+accommodation_options = ["3-star hotel", "4-star hotek", "5-star hotel", "Hostels ", "B&Bs",
                "Campgrounds", "Resorts"]
 
 selected_accommodation = st.sidebar.multiselect("Preferred Accomodation", accommodation_options)
