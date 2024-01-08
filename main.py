@@ -145,7 +145,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget, num_day
                      "with a '+' between them. "
                      "Pls refrain from including anything to this link, not before and not after ")
 
-    # st.write(user_message)
+    st.write(user_message)
 
     # Call API
 
