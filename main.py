@@ -139,7 +139,10 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
                      " 'https://www.google.com/maps/dir/'.")
     user_message += ("- Include the city names and their corresponding countries separated by '+' "
                      "for each destination within the link.")
-    user_message += "- Please REFRAIN from any unnecessary characters before or after the link."
+    user_message += ("- Please REFRAIN from any unnecessary characters before or after the link. "
+                     "So the link will be for instance:")
+    hyper_example = f'=HYPERLINK("https://www.google.com/maps/dir/Paris+France/Fontainebleau+France)"'
+    user_message += hyper_example
 
     st.write(user_message)
 
