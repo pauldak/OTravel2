@@ -70,7 +70,8 @@ def save_to_excel(text, start_place, end_place):
 
 
 
-def generate_itinerary(start_place, end_place, must_see, max_km, budget, num_days, start_date, selected_pois):
+def generate_itinerary(start_place, end_place, must_see, max_km, budget,
+                       num_days, start_date, selected_pois, selected_accommodation):
     # Validate
     if not start_place or not end_place:
         # or not terms_checkbox.isChecked():
@@ -109,9 +110,10 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget, num_day
     user_message += ("- I want to visit 3 or 4 sites every day, total time around 5 to 7 hours per day "
                      "(Depending on the average spending time in each site). \n")
     user_message += "- if there are some POIs on the way, I would like to visit them as well.\n "
-    user_message += (f'- Accommodations with a budget not exceeding {str(budget)} dollars per night, '
-                     f'I seek comfortable and welcoming hotel stays, that are rated at least 4.5 stars. ')
-    user_message += "- Please check the availability of the hotels before you add them to the itinerary.\n "
+    user_message += (f'- My favorite type of accommodation {selected_accommodation}  '
+                     f'Accommodations with a budget not exceeding {str(budget)} dollars per night, ')
+
+    user_message += "- Please check the availability of the accommodation before you add them to the itinerary.\n "
     user_message += ("- Provide distinct itinerary for each day of the journey. "
                      "The lines of the table are for the days, \n")
     user_message += "(please separate between the days with a" + r'''\n).'''
@@ -197,6 +199,11 @@ poi_options = ["Museums", "Parks & Gardens", "Architecture", "Art Galleries", "L
 
 selected_pois = st.sidebar.multiselect("Preferred POIs", poi_options)
 
+accommodation_options = ["3-star", "4-star", "5-star", "Hostels ", "B&Bs",
+               "Campgrounds", "Resorts"]
+
+selected_accommodation = st.sidebar.multiselect("Preferred Accomodation", accommodation_options)
+
 terms_checkbox = st.checkbox("I agree to the terms and conditions")
 
 if st.button("Enter Data"):
@@ -209,5 +216,6 @@ if st.button("Enter Data"):
         st.write("Your data is being processed. This may take a few moments...")
 
         # Call your generate_itinerary function with the collected data
-        generate_itinerary(start_place, end_place, must_see, max_km, budget, num_days, start_date, selected_pois)
+        generate_itinerary(start_place, end_place, must_see, max_km, budget,
+                           num_days, start_date, selected_pois, selected_accommodation)
         # st.write("Your itinerary.xlsx is ready in your Downloads directory")
