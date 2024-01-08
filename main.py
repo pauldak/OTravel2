@@ -1,4 +1,3 @@
-import openpyxl
 from openpyxl.styles import Font
 
 import openai
@@ -12,10 +11,10 @@ st.set_page_config(layout="wide")
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 st.write(openai.api_key[-5:])
 
+
 def save_to_excel(text, start_place, end_place):
     import openpyxl
     from io import BytesIO
-
 
     workbook = openpyxl.Workbook()
 
@@ -52,7 +51,6 @@ def save_to_excel(text, start_place, end_place):
     # Adjust the 1st column to a fixed width of 8
     sheet.column_dimensions['A'].width = 15
 
-
     # Save Excel file on server
 
     workbook.save(buffer)
@@ -65,9 +63,6 @@ def save_to_excel(text, start_place, end_place):
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     )
     # st.write("Your file sample.xlsx is ready")
-
-    # return response
-
 
 
 def generate_itinerary(start_place, end_place, must_see, max_km, budget,
@@ -101,7 +96,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += f'- The trip is going to last {str(num_days)} days \n'
     user_message += (f'- It is imperative that I do not drive more than  {str(max_km)} kilometers on any given day'
                      f'-This is a MUST! \n')
-    user_message += (f'"- Please distribute driving distances and activities evenly across the days of the trip, '
+    user_message += (f'- Please distribute driving distances and activities evenly across the days of the trip, '
                      f'avoiding excessive driving on any single day.\n ')
     if my_pois_list:
         user_message += f'- My favorites POIs are:  {str(my_pois_list)} .\n '
@@ -117,9 +112,10 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += ("- Provide distinct itinerary for each day of the journey. "
                      "The lines of the table are for the days, \n")
     user_message += "(please separate between the days with a" + r'''\n).'''
-    user_message += f'The columns (" {str(num_of_columns)} ) are: '
+    user_message += f' The columns (" {str(num_of_columns)} ) are: '
     user_message += "- Day date (call the column 'Day'). \n"
-    user_message += "- Driving from and driving to (in the same row, separate them with ' to ') (call the column 'Way')\n "
+    user_message += ("- Driving from and driving to (in the same row, separate them with ' to ') "
+                     "(call the column 'Way')\n ")
     user_message += ("- If we stay in same place DON'T add anything, just write the name of the place, "
                      "refrain from including any character or word before or after.\n ")
     user_message += "- Actual Driving distance (call the column 'km').\n "
@@ -141,7 +137,8 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
 
     user_message += ("for all the cities, (in the SAME Google Maps link), add their country after the city name, "
                      "separated by '+' between them. For instance 'Paris+France/Orléans+France' "
-                     "Please REFRAIN from including anything to this link, not before the link and not after \n")
+                     "Please REFRAIN from including anything to this link, not before the link and not after"
+                     "So the link starts with  'https://www.google.com/maps/dir/' \n")
 
     st.write(user_message)
 
@@ -199,10 +196,10 @@ poi_options = ["Museums", "Parks & Gardens", "Architecture", "Art Galleries", "L
 
 selected_pois = st.sidebar.multiselect("Preferred POIs", poi_options)
 
-accommodation_options = ["3-star hotel", "4-star hotek", "5-star hotel", "Hostels ", "B&Bs",
+accommodation_options = ["3-star hotel", "4-star hotel", "5-star hotel", "Hostels ", "B&Bs",
                "Campgrounds", "Resorts"]
 
-selected_accommodation = st.sidebar.multiselect("Preferred Accomodation", accommodation_options)
+selected_accommodation = st.sidebar.multiselect("Preferred Accommodation", accommodation_options)
 
 terms_checkbox = st.checkbox("I agree to the terms and conditions")
 
