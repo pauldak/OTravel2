@@ -131,11 +131,11 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget, num_day
                      "Refrain from including any additional commas to the sites names. \n")
     user_message += "- Hotel name (call the column 'Hotel'). \n"
     user_message += "- Budget (call the column 'Budget'). \n "
-    user_message += "SEPARATE between columns with a ',' \n"
+    user_message += "- SEPARATE between columns with a ',' \n"
 
-    user_message += ("I also need that the first line of the table will be: Day, Way, km,"
+    user_message += ("- I also need that the first line of the table will be: Day, Way, km,"
                      " morning, afternoon, Hotel, Budget \n")
-    user_message += ("At the end of the table, please give me the itinerary in Google Maps format"
+    user_message += ("-At the end of the table, please give me the itinerary in Google Maps format"
                      " with Hyper link and with blue color, "
                      "starts with '=HYPERLINK(")
 
