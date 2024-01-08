@@ -135,11 +135,11 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget, num_day
 
     user_message += ("- I also need that the first line of the table will be: Day, Way, km,"
                      " morning, afternoon, Hotel, Budget \n")
-    user_message += "- At the end of the table, please give me the itinerary in Google Maps format "
+    user_message += "- At the end of the table, please give me one Google Maps format(link) for the itinerary "
 
-    user_message += ("for each city, in the SAME Google Maps link, add its country after the city name, "
-                     "with a '+' between them. For instance 'Paris+France/Orléans+France' "
-                     "Please refrain from including anything to this link, not before and not after \n")
+    user_message += ("for all the cities, (in the SAME Google Maps link), add their country after the city name, "
+                     "separated by '+' between them. For instance 'Paris+France/Orléans+France' "
+                     "Please refrain from including anything to this link, not before the link and not after \n")
 
     st.write(user_message)
 
