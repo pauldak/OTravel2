@@ -114,7 +114,8 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += "(please separate between the days with a" + r'''\n).'''
     user_message += f' The columns (" {str(num_of_columns)} ) are: '
     user_message += "- Day date (call the column 'Day'). \n"
-    user_message += ("- Driving from and driving to (in the same row, separate them with ' to ') "
+    user_message += ("- Driving from and driving to (in the same row, "
+                     "separate them with ' to ' include just the cities names, without the country) "
                      "(call the column 'Way'), ")
     user_message += ("if we stay in same place DON'T add anything, just write the name of the place, "
                      "refrain from including any character or word before or after.\n ")
