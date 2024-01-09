@@ -127,6 +127,8 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += "if the average time is not integer, round it up to the nearest integer. "
     user_message += ("if there are more than one thing to do in the afternoon, separate them with a '|'. "
                      "Refrain from including any additional commas to the sites names. \n")
+    user_message += "- If there is nothing to do in the morning or in the afternoon, please write 'Visit the central'\n"
+
     user_message += "- Hotel name (call the column 'Hotel'). \n"
     user_message += "- Budget (call the column 'Budget'). \n "
     user_message += "- SEPARATE between columns with a ',' \n"
@@ -138,9 +140,9 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += ("- Please format the link as an HTML anchor tag with the URL beginning with"
                      " 'https://www.google.com/maps/dir/'.")
     user_message += ("- Include the city names and their corresponding countries separated by '+' "
-                     "for each destination within the link.")
+                     "for each destination within the link. \n")
     user_message += ("- Please REFRAIN from any unnecessary characters before or after the link. "
-                     "So the link will be for instance:")
+                     "So the link will be, for instance:")
     hyper_example = f'=HYPERLINK("https://www.google.com/maps/dir/Paris+France/Fontainebleau+France)"'
     user_message += hyper_example
 
