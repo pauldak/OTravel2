@@ -106,7 +106,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
                      "(Depending on the average spending time in each site). \n")
     user_message += "- if there are some POIs on the way, I would like to visit them as well.\n "
     user_message += (f'- My favorite type of accommodation {selected_accommodation}  '
-                     f'Accommodations with a budget not exceeding {str(budget)} dollars per night, ')
+                     f'Accommodations with a budget not exceeding {str(budget)} dollars per night,\n ')
 
     user_message += "- Please check the availability of the accommodation before you add them to the itinerary.\n "
     user_message += ("- Provide distinct itinerary for each day of the journey. "
@@ -115,8 +115,8 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += f' The columns (" {str(num_of_columns)} ) are: '
     user_message += "- Day date (call the column 'Day'). \n"
     user_message += ("- Driving from and driving to (in the same row, separate them with ' to ') "
-                     "(call the column 'Way')\n ")
-    user_message += ("- If we stay in same place DON'T add anything, just write the name of the place, "
+                     "(call the column 'Way'), ")
+    user_message += ("if we stay in same place DON'T add anything, just write the name of the place, "
                      "refrain from including any character or word before or after.\n ")
     user_message += "- Actual Driving distance (call the column 'km').\n "
     user_message += "- What to do in the morning (with average time in each site) (call the column 'morning') "
@@ -127,7 +127,8 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += "if the average time is not integer, round it up to the nearest integer. "
     user_message += ("if there are more than one thing to do in the afternoon, separate them with a '|'. "
                      "Refrain from including any additional commas to the sites names. \n")
-    user_message += "- If there is nothing to do in the morning or in the afternoon, please write 'Visit the central'\n"
+    user_message += ("- If there is nothing to do in the morning or in the afternoon, "
+                     "(Hope you always find something to do) please write 'Visit the central'\n")
 
     user_message += "- Hotel name (call the column 'Hotel'). \n"
     user_message += "- Budget (call the column 'Budget'). \n "
