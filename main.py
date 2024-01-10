@@ -149,7 +149,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     hyper_example = f'=HYPERLINK("https://www.google.com/maps/dir/Paris+France/Fontainebleau+France)"'
     user_message += hyper_example
 
-    st.write(user_message)
+    # st.write(user_message)
 
     # Call API
 
@@ -167,8 +167,10 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
 
     # Process and export itinerary
 
-    st.write(itinerary)
+    # st.write(itinerary)
     save_to_excel(itinerary, start_place, end_place)
+
+
 main_col, right_col = st.columns([3,1])
 
 with main_col:
