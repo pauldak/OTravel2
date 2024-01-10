@@ -117,14 +117,14 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += ("- Driving from and driving to (in the same row, "
                      "separate them with ' to ' include just the cities names, WITHOUT the country name) "
                      "(call the column 'Way'), ")
-    user_message += ("if we stay in same place DON'T add anything, just write the name of the place, "
-                     "refrain from including any character or word before or after.\n ")
-    user_message += "- Actual Driving distance (call the column 'km').\n "
-    user_message += "- What to do in the morning (with average time in each site) (call the column 'morning') "
+    # user_message += ("if we stay in same place DON'T add anything, just write the name of the place, "
+    #                 "refrain from including any character or word before or after.\n ")
+    user_message += "- Actual Driving distance (call the column 'Km').\n "
+    user_message += "- What to do in the morning (with average time in each site) (call the column 'Morning') "
     user_message += "if the average time is not integer, round it to the nearest integer. "
     user_message += ("if there are more than one thing to do in the morning, separate them with a '|'. "
                      "Refrain from including any additional commas to the sites names. \n")
-    user_message += "- What to do in the afternoon (with average time in each site) (call the column 'afternoon') "
+    user_message += "- What to do in the afternoon (with average time in each site) (call the column 'Afternoon') "
     user_message += "if the average time is not integer, round it up to the nearest integer. "
     user_message += ("if there are more than one thing to do in the afternoon, separate them with a '|'. "
                      "Refrain from including any additional commas to the sites names. \n")
@@ -136,8 +136,8 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += "- Budget (call the column 'Budget'). \n "
     user_message += "- SEPARATE between columns with a ',' \n"
 
-    user_message += ("- I also need that the first line of the table will be: Day, Way, km,"
-                     " morning, afternoon, Hotel, Budget \n")
+    user_message += ("- I also need that the first line of the table will be: Day, Way, Km,"
+                     " Morning, Afternoon, Hotel, Budget \n")
 
     user_message += "- At the end of the table, please provide a clickable Google Maps link for the itinerary."
     user_message += ("- Please format the link as an HTML anchor tag with the URL beginning with"
@@ -169,59 +169,63 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
 
     st.write(itinerary)
     save_to_excel(itinerary, start_place, end_place)
+main_col, right_col = st.columns([3,1])
 
-st.title("Trip Planner")
+with main_col:
 
-# Input fields
-# Set the width of the input fields
-input_width = 400  # Adjust the width as needed
+    st.title("Trip Planner")
 
-# Apply custom CSS to set the width of the input fields
+    # Input fields
+    # Set the width of the input fields
+    input_width = 400  # Adjust the width as needed
 
-st.markdown(
-    f"""
-    <style>
-        .stTextInput, .stNumberInput, .stDateInput, .stMultiselect {{ width: {input_width}px; }}
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-# Create text input fields
-start_place = st.text_input("Start Place", key="start_place")
-end_place = st.text_input("End Place", key="end_place")
+    # Apply custom CSS to set the width of the input fields
 
-must_see = st.text_input("Must See")
+    st.markdown(
+        f"""
+        <style>
+            .stTextInput, .stNumberInput, .stDateInput, .stMultiselect {{ width: {input_width}px; }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    # Create text input fields
+    start_place = st.text_input("Start Place", key="start_place")
+    end_place = st.text_input("End Place", key="end_place")
 
-# Use beta_expander to create a container for the number input
-# Create a sidebar for additional settings
-st.sidebar.header("Settings")
-max_km = st.sidebar.number_input("Max Km/Day", min_value=150, max_value=300, step=10)
-budget = st.sidebar.number_input("Budget Per Night", min_value=150, max_value=1000, step=10)
-num_days = st.sidebar.number_input("Number of Days", min_value=1, max_value=10, step=1)
-start_date = st.sidebar.date_input("Start Date")
+    must_see = st.text_input("Must See")
 
-poi_options = ["Museums", "Parks & Gardens", "Architecture", "Art Galleries", "Local festivals",
-               "Zoos & Aquariums", "Wineries", "Science Centers", "Local Markets"]
+    # Use beta_expander to create a container for the number input
+    # Create a sidebar for additional settings
+    st.sidebar.header("Settings")
+    max_km = st.sidebar.number_input("Max Km/Day", min_value=150, max_value=300, step=10)
+    budget = st.sidebar.number_input("Budget Per Night", min_value=150, max_value=1000, step=10)
+    num_days = st.sidebar.number_input("Number of Days", min_value=1, max_value=10, step=1)
+    start_date = st.sidebar.date_input("Start Date")
 
-selected_pois = st.sidebar.multiselect("Preferred POIs", poi_options)
+    poi_options = ["Museums", "Parks & Gardens", "Architecture", "Art Galleries", "Local festivals",
+                   "Zoos & Aquariums", "Wineries", "Science Centers", "Local Markets"]
 
-accommodation_options = ["3-star hotel", "4-star hotel", "5-star hotel", "Hostels ", "B&Bs",
-               "Campgrounds", "Resorts"]
+    selected_pois = st.sidebar.multiselect("Preferred POIs", poi_options)
 
-selected_accommodation = st.sidebar.multiselect("Preferred Accommodation", accommodation_options)
+    accommodation_options = ["3-star hotel", "4-star hotel", "5-star hotel", "Hostels ", "B&Bs",
+                   "Campgrounds", "Resorts"]
 
-terms_checkbox = st.checkbox("I agree to the terms and conditions")
+    selected_accommodation = st.sidebar.multiselect("Preferred Accommodation", accommodation_options)
 
-if st.button("Enter Data"):
-    with st.spinner("Please wait..."):
-        # generate a map from start_place to end_place
+    terms_checkbox = st.checkbox("I agree to the terms and conditions")
 
-        google_maps_embed = generate_google_maps_embed(start_place, end_place)
-        st.markdown(google_maps_embed, unsafe_allow_html=True)
+    if st.button("Enter Data"):
+        with st.spinner("Please wait..."):
+            # generate a map from start_place to end_place
 
-        st.write("Your data is being processed. This may take a few moments...")
+            google_maps_embed = generate_google_maps_embed(start_place, end_place)
+            with right_col:
+                st.markdown(google_maps_embed, unsafe_allow_html=True)
 
-        # Call your generate_itinerary function with the collected data
-        generate_itinerary(start_place, end_place, must_see, max_km, budget,
-                           num_days, start_date, selected_pois, selected_accommodation)
-        # st.write("Your itinerary.xlsx is ready in your Downloads directory")
+            st.write("Your data is being processed. This may take a few moments...")
+
+            # Call your generate_itinerary function with the collected data
+            generate_itinerary(start_place, end_place, must_see, max_km, budget,
+                               num_days, start_date, selected_pois, selected_accommodation)
+            # st.write("Your itinerary.xlsx is ready in your Downloads directory")
