@@ -128,8 +128,9 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += "if the average time is not integer, round it up to the nearest integer. "
     user_message += ("if there are more than one thing to do in the afternoon, separate them with a '|'. "
                      "Refrain from including any additional commas to the sites names. \n")
-    user_message += ("- If there is nothing to do in the morning or in the afternoon, "
-                     "(Hope you always find something to do) please write 'Visit the central'\n")
+    if my_pois_list:
+        user_message += ("- If there is nothing to do in the morning or in the afternoon, "
+                     "(that match my favorite POIs please find other POIs\n")
 
     user_message += "- Hotel name (call the column 'Hotel'). \n"
     user_message += "- Budget (call the column 'Budget'). \n "
