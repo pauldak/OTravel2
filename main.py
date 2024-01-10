@@ -115,7 +115,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += f' The columns (" {str(num_of_columns)} ) are: '
     user_message += "- Day date (call the column 'Day'). \n"
     user_message += ("- Driving from and driving to (in the same row, "
-                     "separate them with ' to ' include just the cities names, without the country) "
+                     "separate them with ' to ' include just the cities names, WITHOUT the country name) "
                      "(call the column 'Way'), ")
     user_message += ("if we stay in same place DON'T add anything, just write the name of the place, "
                      "refrain from including any character or word before or after.\n ")
@@ -130,7 +130,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
                      "Refrain from including any additional commas to the sites names. \n")
     if my_pois_list:
         user_message += ("- If there is nothing to do in the morning or in the afternoon, "
-                     "(that match my favorite POIs please find other POIs\n")
+                     "(that match my favorite POIs), please find other POIs\n")
 
     user_message += "- Hotel name (call the column 'Hotel'). \n"
     user_message += "- Budget (call the column 'Budget'). \n "
