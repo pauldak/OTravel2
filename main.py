@@ -9,7 +9,7 @@ from trymap import generate_google_maps_embed
 st.set_page_config(layout="wide")
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
-st.write(openai.api_key[-5:])
+# st.write(openai.api_key[-5:])
 
 
 def save_to_excel(text, start_place, end_place):
