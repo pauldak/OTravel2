@@ -204,7 +204,7 @@ with left_col:
     st.sidebar.header("Settings")
     max_km = st.sidebar.number_input("Max Km/Day", min_value=150, max_value=300, step=10)
     budget = st.sidebar.number_input("Budget Per Night", min_value=150, max_value=1000, step=10)
-    num_days = st.sidebar.number_input("Number of Days", min_value=1, max_value=10, step=1)
+    num_days = st.sidebar.number_input("Number of Days", min_value=1, max_value=15, step=1)
     start_date = st.sidebar.date_input("Start Date")
 
     poi_options = ["Museums", "Parks & Gardens", "Architecture", "Art Galleries", "Local festivals",
