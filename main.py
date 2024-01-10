@@ -171,9 +171,11 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     save_to_excel(itinerary, start_place, end_place)
 
 
-main_col, right_col = st.columns([3,1])
+# main_col, right_col = st.columns([3,1])
+left_col, mid_col, right_col = st.columns([6,1,2])
 
-with main_col:
+# with main_col:
+with left_col:
 
     st.title("Trip Planner")
 
