@@ -222,10 +222,13 @@ with left_col:
     if st.button("Enter Data"):
         with st.spinner("Please wait..."):
             # generate a map from start_place to end_place
+            # Empty placeholder in mid column
+            with mid_col:
+                map_placeholder = st.empty()
 
             google_maps_embed = generate_google_maps_embed(start_place, end_place)
             with right_col:
-                st.markdown(google_maps_embed, unsafe_allow_html=True)
+                map_placeholder.markdown(google_maps_embed, unsafe_allow_html=True)
 
             st.write("Your data is being processed. This may take a few moments...")
 
